@@ -25,19 +25,17 @@ class Money:
     def __init__(self,dollars:int,cents:int):
         self.dollars=dollars
         self.cents=cents
+        while self.cents>0:
+            if self.cents>=100:
+                self.dollars+=1
+                self.cents-=100
     
     def __add__(self,other: Money):
-        while self.cents>0:
-            self.dollars+=1
-            self.cents-=100
         d=self.dollars+other.dollars
         c=self.cents+other.cents
         return Money(d,c)
     
     def __sub__(self,other:Money):
-        while self.cents>0:
-            self.dollars+=1
-            self.cents-=100
         d=self.dollars-other.dollars
         c=self.cents-other.cents 
         return Money(d,c)
